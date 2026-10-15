@@ -8,6 +8,10 @@ import java.util.Properties;
 
 public class JDBCTemplate {
 
+    // 해당 클래스의 역할
+    // Connection 객체를 생성하는 코드를 메서드화
+    // Connection 객체의 자원을 해제하는 코드를 메서드화
+
     public static Connection getConnection() {
         Connection con = null;
 
