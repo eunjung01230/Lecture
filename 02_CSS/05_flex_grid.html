@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="05_flex_grid.css">
+</head>
+<body>
+    <h1>오늘의 추천 상품!</h1>
+
+    <!--
+        div로만 영역을 설정하게 되면 화면의 가로축을 div 가 전부 차지하게 된다.
+        또한, 화면을 늘리거나 줄였을 때의 유연한 배치도 불가하다.
+    -->
+    <main class="card-list"> 
+    <!-- main이 하나의 flex_컨테이너, 그 안에서 카드를 설정-->
+        <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">노트북 거치대</h2>
+        <p class="price">17,000원</p>
+        <p class="desc">각도를 6단계로 조절할 수 있습니다.</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">마수</h2>
+        <p class="price">17,000원</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">노</h2>
+        <p class="price">17,000원</p>
+    </div>
+    </main>
+
+    <hr>
+
+    <!--
+        Grid 
+    -->
+    <main class="grid-list"> 
+        <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">노트북 거치대</h2>
+        <p class="price">17,000원</p>
+        <p class="desc">각도를 6단계로 조절할 수 있습니다.</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">마수</h2>
+        <p class="price">17,000원</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">노</h2>
+        <p class="price">17,000원</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">마</h2>
+        <p class="price">17,000원</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">키보드</h2>
+        <p class="price">17,000원</p>
+    </div>
+
+    <div class="card">
+        <div class="thumb"></div>
+        <h2 class="product-name">텀블러</h2>
+        <p class="price">17,000원</p>
+    </div>
+    </main>
+
+    <!----------------------------------------->
+    <!---블록(div)은 아래으로 인라인(span)은 옆으로 쌓인다--->
+    <hr>
+    <h3>블록과 인라인</h3>
+    <section class="display-demo">
+    <div class="box-block">div 입니다 — 자기 줄을 통째로 차지합니다</div>
+    <div class="box-block">div 입니다 — 그래서 아래로 쌓입니다</div>
+
+    <span class="box-inline">span 입니다</span>
+    <span class="box-inline">span 입니다 — 옆으로 붙습니다</span>
+
+    <span class="box-inline-block">span인데 너비가 먹습니다</span>
+
+    <span class="box-block-span">같은 span인데 자기 줄을 차지합니다</span>
+
+    <div class="box-inline-div">같은 div 인데</div>
+    <div class="box-inline-div">옆으로 붙습니다</div>
+    </section>
+    <!----------------------------------------->
+</body>
+</html>

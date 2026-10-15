@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 형제 관계 선택자 */
+        #div-test1{
+            background: red;
+        }
+
+        /* 해당 요소 바로 다음 특정 태그 선택 */
+        #div-test1 + div {
+            background: green;
+        }
+
+        /* 해당 요소보다 뒤에 존재하는 특정 태그 모두 선택 */
+        /* 추후 실습에 방해되므로 임시 주석 */
+        /* #div-test1 ~ div {
+            background: darkgrey;
+
+        } */
+
+        #test :first-child {
+            background: rebeccapurple;
+        }
+
+        #test :last-child {
+            background: darkgoldenrod;
+        }
+
+        /* 형제 관계 태그 중 n번째 태그 선택 */
+        #test :nth-child(2) {
+            background: darkblue;
+        }
+
+         #test :nth-child(2n) {
+            background: slateblue
+        }
+
+        /* 뒤에서 부터 4번째 = 역순 */
+        #test :nth-last-child(4) {
+            background: moccasin;
+        } 
+
+        /* =====여기부터는 부정선택자==== */
+        /* not이 붙어서 반대로 적용됨 p: P태그를 넣은 이유는 마직막이 p?*/
+        /* 2n:even, 2n-1: odd */
+        #test2 p:not(:nth-child(2n)) {
+            background: orange;
+        }
+
+         #test2 p:not(:nth-child(odd)) {
+            background: rgb(32, 158, 21);
+        }
+        /* =====여기부터는 문자선택자==== */
+        #test3 p::first-letter {
+            font: 50px bold;
+        }
+
+        #test3 p::first-line {
+            font: 50px bold;
+        }
+
+        /* 드레그해서 선택하면 */
+        #test3 p::selection {
+            font: 50px bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>동위 선택자</h1>
+    <pre>
+        동위 관계(형제 관계)를 의미하며
+        자손/후손으로 포함된 관계가 아닌 
+        별도로 분리된 태그들을 의미한다.
+    </pre>
+    <!-- div#div-test$*5{div-test$} -->
+     <div id="div-test1">div-test1</div>
+     <div id="div-test2">div-test2</div>
+     <div id="div-test3">div-test3</div>
+     <div id="div-test4">div-test4</div>
+     <div id="div-test5">div-test5</div>
+
+     <h1>일반 구조 선택자</h1>
+     <pre>
+        특정 위치에 있는 태그 선택하기
+        특징 : 위치로 구분할 수 있다.
+     </pre>
+     <!-- div#test>p{테스트$}*5+pre{테스트6} -->
+     <div id="test">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+        <pre>테스트6</pre>
+     </div>
+     
+     <!-- 이거 빼고 다 바꿔 -->
+      <h1>부정 선택자</h1>  
+      <pre>
+        지금까지의 선택자에 대해 반대로 동작하는 선택자!
+      </pre>
+      <div id="test2">
+        <p>테스트1</p>
+        <p>테스트2</p>
+        <p>테스트3</p>
+        <p>테스트4</p>
+        <p>테스트5</p>
+        <pre>테스트6</pre>
+     </div>
+     <h1>문자 선택자</h1>
+     <pre>
+        태그 내부에 있는 특정 조건이 문자를 선택한다.
+     </pre>
+     <div id="test3">
+        <p>절대음감절대음감</p>
+     </div>
+</html>
