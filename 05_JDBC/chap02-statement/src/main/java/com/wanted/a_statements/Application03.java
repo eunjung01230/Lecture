@@ -24,7 +24,7 @@ public class Application03 {
         Statement stmt = null;
         ResultSet rset = null;
         Scanner sc = new Scanner(System.in);
-        System.out.println("메뉴 이름 입력 : ");
+        System.out.print("메뉴 이름 입력 : ");
         String menuName = sc.nextLine();
 
         // 1개의 DB행을 MenuDTO 객체에 담기위한 객체 생성
