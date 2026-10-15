@@ -1,0 +1,104 @@
+06.
+select
+    emp_id,
+    emp_name,
+    salary,
+    bonus
+from
+    tbl_employee
+where
+    bonus is null;
+------------------------------
+07.
+select
+    emp_id,
+    emp_name,
+    salary,
+    dept_code
+from
+    tbl_employee
+where
+    salary >= 3500000
+    and salary <= 5500000;
+------------------------------
+08.
+select
+    emp_id,
+    emp_name,
+    hire_date
+from
+    tbl_employee
+where
+    emp_name like '김%';
+------------------------------
+09.
+select
+    emp_name,
+    emp_no,
+    dept_code
+from
+    tbl_employee
+where
+    emp_name like '%하%';
+------------------------------
+10.
+select
+    emp_id,
+    emp_name,
+    phone
+from
+    tbl_employee
+where
+    phone like '___9%';
+--------------------------------
+11.
+select
+	emp_id,
+    emp_name,
+    phone
+from
+    tbl_employee
+where
+    phone like '___9_______';
+----------------------------------
+12.
+select
+    emp_name,
+    dept_code,
+    salary
+from
+    tbl_employee
+where
+    dept_code in ('D6', 'D8');
+----------------------------------
+13.
+select
+    emp_id,
+    emp_name,
+    email
+from
+    tbl_employee
+where
+    emp_name not like '이%';
+----------------------------------
+14.
+select
+    emp_name,
+    salary,
+    job_code
+from
+    tbl_employee
+where    
+    (job_code = 'J2' and salary >= 2000000)
+    or job_code = 'J7';
+----------------------------------------
+15.
+select
+    emp_name,
+    salary,
+    job_code
+from
+    tbl_employee
+where    
+    (job_code = 'J7' or job_code = 'J2')   --  job_code in ('J7', 'J2')
+    and salary >= 2000000;

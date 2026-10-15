@@ -1,0 +1,32 @@
+1회차 
+
+CLI 명령어를 입력하는 화면 
+GUI 사용자를 위한 화면  세심하게 어려움 
+shell 사람과 컴 연결 
+bash 리눅스에 있는?가능한? shell [표시하고자 하는것은 같은 명령어 약간 다름
+
+ex) mkdir Lecture = 새폴더 만들기  Shell 에서 만드는게 빠른 이유 
+shift tab 위에 복사 
+
+bash에서는 방향키 위
+
+----------------------------------
+초기화 : 초기환경구축 git생성 
+
+working에서 stage 없이 바로 저장 가능 = add없이 commit 할 수 있음 
+- git commit -am // am의 a가 add 동시에 작성함 단, 최초의 추적은 해놔야함
+최초의 추적을 먹이면 add없이 저장가능 
+working에서 인지없이 바로 올리면 인식을 못해서 수정사항이 나오지 않음 
+Untracked files: 이라고 나오면 git이 변경된 상황 자체를 모르는 것 
+GUI에서 수정해도 git에서 log확인 가능 
+
+modified = 수정됨 
+git restore 파일 = 복구 (commit 전에 지움) 
+revert = 복구 (add하고 commit까지함)
+
+local = 내컴 
+remote = 사이트 
+
+
+
+

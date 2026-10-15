@@ -3,9 +3,7 @@ package com.wanted.common;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class JDBCTemplate {
@@ -51,6 +49,30 @@ public class JDBCTemplate {
             //커넥션이 존재하거나, 닫혀있지 않다면
             if(con != null && !con.isClosed()) {
                 con.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    // 사용한 Statement 객체를 해제하는 메서드
+    public static void close(Statement stmt) {
+
+        try {
+            //커넥션이 존재하거나, 닫혀있지 않다면
+            if(stmt != null && !stmt.isClosed()) {
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    // 사용한 ResultSet 객체를 해제하는 메서드
+    public static void close(ResultSet rset) {
+
+        try {
+            //커넥션이 존재하거나, 닫혀있지 않다면
+            if(rset != null && !rset.isClosed()) {
+                rset.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

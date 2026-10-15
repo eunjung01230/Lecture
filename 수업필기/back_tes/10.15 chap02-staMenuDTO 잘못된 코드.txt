@@ -1,0 +1,62 @@
+chap02-sta/MenuDTO 잘못된 코드 
+
+private int menuCode;
+    private String menuName;
+    private int menuPrice;
+    private int categoryCode;
+//    private Integer refCategoryCode; 잘못만들었지만 좋은 예시
+    private char orderableStatus;
+
+    public MenuDTO(int menuCode, String menuName, int menuPrice, int categoryCode, char orderableStatus) {
+        this.menuCode = menuCode;
+        this.menuName = menuName;
+        this.menuPrice = menuPrice;
+        this.categoryCode = categoryCode;
+        this.orderableStatus = orderableStatus;
+    }
+
+    public int getMenuCode();
+
+    }
+    public int getMenuCode() {
+        return menuCode;
+    }
+
+    public void setMenuCode(int menuCode) {
+        this.menuCode = menuCode;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public int getMenuPrice() {
+        return menuPrice;
+    }
+
+    public void setMenuPrice(int menuPrice) {
+        this.menuPrice = menuPrice;
+    }
+
+    public int getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(int categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public char getOrderableStatus() {
+        return orderableStatus;
+    }
+
+    public void setOrderableStatus(char orderableStatus) {
+        this.orderableStatus = orderableStatus;
+    }
+
+    public MenuDTO {}
+}

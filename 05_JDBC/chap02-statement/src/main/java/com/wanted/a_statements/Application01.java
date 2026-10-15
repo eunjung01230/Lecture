@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static com.wanted.common.JDBCTemplate.close;
 import static com.wanted.common.JDBCTemplate.getConnection;
 
 public class Application01 {
@@ -34,9 +35,23 @@ public class Application01 {
             // 실행시키는 메서드다. 또한 반환 타입은 ResultSet이다.
             rset = stmt.executeQuery("SELECT * FROM TBL_MENU");
 
+            /* comment. next()
+                ResultSet 결과를 목록화시켜 있으면 true
+                없으면 false를 반환한다.
+             */
+            while (rset.next()) {
+                System.out.println(
+                        rset.getString("MENU_NAME") + " 은/는 "
+                        + rset.getString("MENU_PRICE") + "원 입니다. "
+                );
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            close(con);
+            close(rset);
+            close(stmt);
         }
     }
 }

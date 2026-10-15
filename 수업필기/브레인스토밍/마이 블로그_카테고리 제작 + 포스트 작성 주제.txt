@@ -1,0 +1,213 @@
+카테고리 제작 + 포스트 작성 주제
+
+
+다음 포스트 작성하고 커밋 푸쉬까지 바로 진행해줘
+
+언젠가
+[git]
+- Working Directory · Staging Area(Index) · Repository — git add가 실제로 하는 일 (01, 02)
+- .gitignore — 무엇을 Git에서 제외하나 (node_modules, .env, .idea 포함) (01, 06)
+- git clone · fetch · pull 차이 (01, 02)
+- Branch와 Merge, GitHub Flow 브랜치 전략 (01, 02)
+- git reset vs git revert — 되돌리기 방법 (02)
+- SSH 키 인증 — HTTPS 대신 공개키/개인키로 GitHub 연결 (01)
+- OAuth 2.0 인가 흐름 — "브라우저에서 로그인하고 권한 허용"의 원리 (02)
+
+[dev-setup]
+- Version Manager — nvm-windows · fnm · .nvmrc · package.json engines (00, 04, 08)
+- 설정 옮기기 — VS Code Settings Sync · Profiles · dotfiles (03, 08)
+- winget — Windows 공식 패키지 관리자로 설치 자동화 (08)
+- Dev Containers와 Docker — 개발환경을 파일로 정의 (08)
+- EditorConfig와 Prettier 설정 파일 — 팀 코드 스타일 통일 (03)
+- Emmet — VS Code 내장 HTML/CSS 약어 (03)
+- IDE 디버거 — VS Code Run and Debug · IntelliJ Breakpoint (03, 06)
+- IntelliJ Inspections(정적 분석) (06)
+- IntelliJ Run Configuration — VM 옵션과 프로그램 인자 (06)
+- JShell — Java REPL (05)
+
+[frontend / JavaScript·Node]
+- file:// vs 로컬 서버(http://) 차이 (03)
+- package-lock.json과 Semantic Versioning (00, 04)
+- npx (04)
+- CommonJS vs ES Modules (require / import) (04)
+- 이벤트 루프와 비동기 I/O (04)
+
+[backend / Java]
+- 컴파일 언어와 인터프리터 언어 (00)
+- JVM · JIT 컴파일러 · JVM 메모리 구조 (00, 05)
+- package와 classpath (05)
+- Maven · Gradle 빌드 생명주기와 Toolchain (05, 06)
+- Java 릴리스 주기와 LTS (05)
+- 포트(Port)와 네트워크 기초 (00)
+
+[backend / Java Web — 부트캠프 이후 후보]
+- HTTP Method와 Status Code (07)
+- Servlet Lifecycle (init → service → destroy) (07)
+- WAR 구조와 WEB-INF (07)
+- Spring Boot의 Embedded Tomcat (07)
+
+[deployment]
+- Reverse Proxy — Apache HTTP Server/Nginx + Tomcat (07)
+- Secret 관리 — .env.example · 비밀번호 관리자 (08)
+-------------------------------------------------------------------
+MY-BLOG
+
+처음 만든 개발 블로그가 지속되지 못한 이유
+다시 개발 블로그를 시작한 이유
+AI와 블로그 운영
+Claude와 함께 블로그를 관리하기 시작하다
+CLAUDE.md로 블로그 규칙 만들기
+Claude Agent 구성하기
+공부용 Skill 만들기
+ChatGPT / Claude / Gemini를 나눠 쓰는 이유
+AI에게 작업을 정확하게 지시하는 방법
+글 작성 시스템
+개발 공부를 블로그 글로 남기는 나만의 기준
+개발 블로그 포스트 템플릿 만들기
+카테고리와 태그를 어떻게 나눌까
+긴 개발 글에 TOC를 추가한 이유
+코드·이미지·표를 보기 좋게 정리하는 방법
+블로그 디자인 개편
+여러 개발 블로그를 참고해 디자인 개편하기
+사이드바와 카테고리 구조 개선하기
+모바일에서도 읽기 좋은 블로그 만들기
+프로필과 GitHub 연결하기
+favicon·로고·브랜딩 변경 과정
+작은 디테일이 블로그 완성도를 바꾼다
+블로그 기능 발전
+포스트 추가·수정 기능 발전 과정
+블로그 관리자 기능 만들기
+카테고리 접기·펼치기 기능 만들기
+방문자 코멘트 기능 고민하기
+개발 블로그에 검색 기능은 필요할까
+블로그에 기능을 너무 많이 넣지 않기로 한 이유
+놓치기 쉬운 웹 디테일
+favicon만 바꾸면 끝일까? 웹사이트 아이콘 정리
+OG 이미지와 링크 미리보기 설정하기
+title·description과 기본 SEO 설정하기
+이미지 용량과 웹 성능 최적화하기
+404 페이지와 깨진 링크 챙기기
+GitHub Pages 배포와 운영
+GitHub Pages로 개발 블로그 배포하기
+commit과 push만 하면 자동으로 배포될까
+GitHub Pages 자동 배포의 범위와 한계
+배포가 실패했을 때 어디를 확인해야 할까
+블로그를 수정하고 배포하는 나만의 작업 흐름
+MY-BLOG 회고
+개발 블로그를 다시 지속할 수 있게 만든 방법
+-------------------------------------------------------------------
+Design
+├─ Figma 시작하기
+├─ Figma 교육 계정 활용
+├─ Figma Make 사용
+├─ 디자인 레퍼런스 찾고 분석하기
+├─ Figma Export
+├─ Figma → Claude 구현
+├─ Claude Design 활용
+├─ ChatGPT 이미지·아이콘 제작
+├─ 여러 AI를 디자인에 같이 쓰는 이유
+├─ 화면 정렬과 시선의 흐름
+├─ 정보와 버튼의 우선순위
+├─ 실제 시연 후 발견한 UI 문제
+├─ 반응형 디자인
+├─ Empty State
+├─ favicon
+├─ OG 이미지
+└─ 놓치기 쉬운 UI 디테일
+
+---------------------------------
+Design
+
+[디자인 도구]
+01 개발자가 Figma를 배우는 이유
+02 Figma 기초
+03 Figma 교육 계정 활용
+04 Figma Make 활용
+05 디자인 레퍼런스 활용
+06 Figma Export
+
+[AI 디자인 워크플로우]
+07 Figma → Claude로 구현하기
+08 Claude Design 활용
+09 ChatGPT로 이미지·아이콘 만들기
+10 여러 AI를 활용한 디자인 워크플로우
+
+[UI/UX 공부]
+11 화면 정렬과 시선의 흐름
+12 예쁜 화면보다 사용하기 쉬운 화면
+13 시연 후 발견한 UI 문제
+14 버튼과 정보의 우선순위
+15 Empty State 설계
+16 정보 구조와 페이지 구성
+17 반응형 디자인
+
+[놓치기 쉬운 디테일]
+18 파비콘까지가 디자인이다
+19 OG 이미지와 링크 공유 디자인
+20 서비스 완성도를 높이는 작은 디테일
+21 디자인 수정 기준 만들기
+
+ChatGPT
+→ 아이디어 정리
+→ 문제 구조화
+→ 디자인 방향 논의
+→ 이미지/아이콘 제작
+→ Claude에 보낼 명령어 작성
+
+Claude / Claude Code
+→ 실제 코드베이스 분석
+→ 코드 수정
+→ Git 작업
+→ 프로젝트 내부 구현
+
+Gemini
+→ 다른 관점 검토
+→ 자료 분석/비교
+→ 필요 시 디자인·콘텐츠 보조
+
+ChatGPT / Claude / Gemini를 나눠 쓰는 이유
+----------------------------------------------------------------------
+Dev Setup
+├─ 개발 공부를 시작하기 전에 준비할 것들
+├─ Git & GitHub 환경 구축
+├─ SourceTree 설치와 Git 연결
+├─ VS Code 설치와 초기 설정
+├─ Node.js와 npm 설치
+├─ JDK 21 설치와 환경변수
+├─ IntelliJ IDEA 설치와 JDK 연결
+├─ Tomcat 설치와 실행
+└─ 새 PC에서 개발환경 다시 구축하기
+
+코드 작성
+   ↓
+VS Code / IntelliJ IDEA
+
+프로그램 실행
+   ↓
+Node.js / JDK
+
+코드 변경 기록
+   ↓
+Git
+
+Git을 화면으로 쉽게 조작
+   ↓
+SourceTree
+
+코드를 인터넷에 저장하고 공유
+   ↓
+GitHub
+
+Java 웹 애플리케이션 실행
+   ↓
+Tomcat
+
+순서	포스트	핵심 내용
+00	개발환경 구축 전체 가이드	앞으로 설치할 프로그램이 무엇이고 왜 필요한지
+01	Git & GitHub 환경 구축	Git 설치 → Git Bash → 사용자 설정 → GitHub 연결
+02	SourceTree 환경 구축	Git을 GUI로 사용하는 이유 → 설치 → GitHub 연결 → 저장소 열기
+03	VS Code 환경 구축	설치 → PATH → 터미널 → 확장 프로그램 → 기본 사용법
+04	Node.js 환경 구축	Node.js/npm 개념 → LTS 설치 → 버전 확인 → 첫 실행
+05	JDK 21 환경 구축	Java/JDK/JRE 차이 → JDK 설치 → PATH → java, javac 확인
+06	IntelliJ IDEA 환경 구축	IDE 개념 → 설치 → JDK 연결 → Java 프로젝트 실행
+07	Tomcat 환경 구축	웹서버/서블릿 컨테이너 개념 → 설치 → 실행 → localhost 확인

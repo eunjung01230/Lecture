@@ -1,0 +1,18 @@
+npm install -> node_modules 설정 
+
+항상 ctrl cc 를 눌러서 터미널 종료해야함
+
+_______________
+?? 
+지금까지의 변경사항을 commit 해
+
+---------------------
+git 레포지토리 랑 연결 
+
+----------------
+planning -> .git 
+_________________________
+
+파일생성 -> 환경변수(.env.local) ->
+파일 안에 복붙
+postgresql://neondb_owner:npg_SFRTvi0pP9an@ep-jolly-leaf-av1y5bwq-pooler.c-11.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require

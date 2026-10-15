@@ -1,0 +1,67 @@
+package com.team1.campus;
+
+public class WageCalculator {
+
+    public int pay(int wage, int hours) {
+        return wage * hours;
+    }
+
+    public int weekpay(int wage, int hours) {
+        return wage * hours / 5;
+    }
+}
+
+----------------------------------------------------
+package com.team1.campus;
+
+public class WageService {
+
+    public int weekpay(int hours) {
+        if (hours > 40) {
+            return 40;
+        }
+
+        return hours;
+    }
+
+    public String nowpay(int wage, int hours) {
+
+        if (wage <= 0 || hours <= 0) {
+            return "시급과 근무 시간은 1 이상이어야 합니다.";
+        }
+
+        WageCalculator wageCalculator = new WageCalculator();
+
+        int pay = wageCalculator.pay(wage, hours);
+
+        if (hours < 15) {
+            return "기본급 " + pay + "원 (주 15시간 미만이라 주휴수당 없음)";
+        }
+
+        int holidayHours = weekpay(hours);
+
+        int holidayPay =
+                wageCalculator.weekpay(wage, holidayHours);
+
+        return "기본급 " + pay
+                + "원 + 주휴수당 " + holidayPay
+                + "원 = 총 " + (pay + holidayPay) + "원";
+    }
+}
+
+-----------------------------------------------------------
+case 1: {
+    System.out.print("시급 : ");
+    int wage = sc.nextInt();
+
+    System.out.print("이번 주 근무 시간 : ");
+    int hours = sc.nextInt();
+
+    WageService wageService = new WageService();
+
+    String result = wageService.nowpay(wage, hours);
+
+    System.out.println(result);
+
+    break;
+}
