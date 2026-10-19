@@ -1,0 +1,6 @@
+10.19 JDBC 2번째 수업 
+
+JDBC = Java - DataBase를 연결해주는 API이다.  Java(Application)   ----JDBC----   DataBase(MySql) 
+
+pstmt.setString(1,menuName); // 실행하는 순서 객체가 들어오는 순서 주의 
+statements와 preparedstatments의 순서가 다른 이유 
