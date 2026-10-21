@@ -1,0 +1,21 @@
+실제로 JDBCT는 JDK에 가려져 있어서 우리가 보지 않음 하지만 면접에서 기초/기본구조를 물어봄
+ servlet도 마찬가지 하지만 알고 있어야지 AI 잘 씀
+
+get방식 
+get은 즉시 url이 바뀜 
+
+/*  오류남 
+url은 무조건 문자열 string으로 해야됨 
+int age = req.getParameter("age");
+
+=> 
+/* comment 
+   URL로 전달되는 데이터는 모두 String타입이다. 
+   따라서 원하는 자료형으로 담기 위해서는 파싱이 필요하다. 
+*/
+int age = Integer.parseInt(req.getParameter("age"));
+----------------------------------------------------------------------
+post는 url에는 노출되지 않고 body라는 공간,  payload에 담김 
+
+GET/POST는 HTTP 요청에서 가장 많이 쓰이는 방식이다. 
+이 둘의 가장 큰 차이는 URL로 데이터를 전달하는 지에 대한 여부이다. 
