@@ -7,4 +7,20 @@
         FROM
             TBL_MENU
     </entry>
+
+    <entry key="menu.updatePrice">
+        UPDATE
+            TBL_MENU
+        SET
+            MENU_PRICE = ?
+        WHERE
+            MENU_CODE = ?
+    </entry>
+
+    <entry key="menu.deleteMenu">
+        DELETE FROM
+            TBL_MENU
+        WHERE
+            MENU_CODE = ?
+    </entry>
 </properties>

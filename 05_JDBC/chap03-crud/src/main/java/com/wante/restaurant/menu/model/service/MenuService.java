@@ -45,4 +45,81 @@ public class MenuService {
         }
 
     }
+
+    public int updateMenuPrice(int code, int price) {
+        if (price < 0) {
+            throw new IllegalArgumentException(
+                    "가격은 0원 이상이어야 합니다."
+            );
+        }
+
+        try (Connection con = JDBCTemplate.getConnection()) {
+
+            // 자동 커밋 비활성화
+            con.setAutoCommit(false);
+
+            try {
+                MenuDAO menuDAO = new MenuDAO(con);
+
+                int result = menuDAO.updateMenuPrice(code, price);
+
+                if (result > 0) {
+                    con.commit();
+                } else {
+                    con.rollback();
+                }
+
+                return result;
+
+            } catch (SQLException e) {
+                con.rollback();
+                throw e;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+//    public int deleteMenu(int num) {
+//
+//        try (Connection con = JDBCTemplate.getConnection()) {
+//
+//            return new MenuDAO(con).deleteMenu(num);
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+    public int deleteMenu(int num) {
+
+        try (Connection con = JDBCTemplate.getConnection()) {
+
+            // 1. 자동 커밋 비활성화
+            con.setAutoCommit(false);
+
+            try {
+                // 2. DAO를 통해 메뉴 삭제
+                MenuDAO menuDAO = new MenuDAO(con);
+                int result = menuDAO.deleteMenu(num);
+
+                // 3. 삭제 성공 여부 확인
+                if (result > 0) {
+                    con.commit();    // 성공하면 확정
+                } else {
+                    con.rollback();  // 삭제된 행이 없으면 취소
+                }
+
+                return result;
+
+            } catch (SQLException e) {
+                // 4. SQL 오류 발생 시 취소
+                con.rollback();
+                throw e;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

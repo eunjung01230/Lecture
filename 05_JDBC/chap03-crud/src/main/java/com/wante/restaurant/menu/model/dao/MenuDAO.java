@@ -51,4 +51,32 @@ public class MenuDAO {
         }
         return menus;
     }
+
+    public int updateMenuPrice(int code, int price)
+        throws SQLException {
+
+            String query = QueryUtil.getQuery("menu.updatePrice");
+
+            try (PreparedStatement pstmt =
+                         connection.prepareStatement(query)) {
+
+                pstmt.setInt(1, price);
+                pstmt.setInt(2, code);
+
+                return pstmt.executeUpdate();
+            }
+        }
+
+    public int deleteMenu(int num) throws SQLException {
+
+        String query = QueryUtil.getQuery("menu.deleteMenu");
+
+        try (PreparedStatement pstmt =
+                     connection.prepareStatement(query)) {
+
+            pstmt.setInt(1, num);
+
+            return pstmt.executeUpdate();
+        }
+    }
 }

@@ -35,4 +35,19 @@ public class MenuController {
 
         return menuList;
     }
+
+    public int updateMenuPrice(int code, int price) {
+
+        int result = menuService.updateMenuPrice(code, price);
+
+        return result;
+    }
+
+    public int deleteMenu(int num) {
+
+        int result = menuService.deleteMenu(num);
+
+        return result;
+    }
 }
+
