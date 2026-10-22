@@ -1,5 +1,8 @@
 실제로 JDBCT는 JDK에 가려져 있어서 우리가 보지 않음 하지만 면접에서 기초/기본구조를 물어봄
- servlet도 마찬가지 하지만 알고 있어야지 AI 잘 씀
+ servlet도 마찬가지 spring에 담겨있음 (tomcat이 스프링에 내장되어 있음) 하지만 알고 있어야지 AI 잘 씀
+
+web server와 was 
+servlet역할 
 
 get방식 
 get은 즉시 url이 바뀜 
