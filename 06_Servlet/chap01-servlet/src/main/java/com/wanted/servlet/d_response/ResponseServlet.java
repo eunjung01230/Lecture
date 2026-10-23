@@ -36,7 +36,7 @@ public class ResponseServlet extends HttpServlet {
 
         System.out.println("response type : " + resp.getContentType());
         //서버에서 응답하는 데이터의 형태는 html 형태이다.
-        resp.setContentType("text/html; charset=UTF-8");
+//        resp.setContentType("text/html; charset=UTF-8");
 
         //브라우저 화면에 노출 시키는 객체
         PrintWriter out = resp.getWriter();

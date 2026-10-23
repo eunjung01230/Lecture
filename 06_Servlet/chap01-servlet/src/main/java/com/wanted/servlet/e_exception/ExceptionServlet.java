@@ -52,7 +52,8 @@ public class ExceptionServlet extends HttpServlet {
         //해당 코드는 응답시에 항상 해주어야
         //한글이 깨지지 않게 된다.
         // == 계속 반복되는 코드
-        resp.setContentType("text/html; charset=UTF-8");
+
+//        resp.setContentType("text/html; charset=UTF-8");
 
 
         PrintWriter out = resp.getWriter();
