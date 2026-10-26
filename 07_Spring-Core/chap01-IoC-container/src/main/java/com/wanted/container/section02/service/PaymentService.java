@@ -1,0 +1,35 @@
+package com.wanted.container.section02.service;
+
+import com.wanted.container.section01.gateway.KakaoPayGateway;
+
+public class PaymentService {
+
+    //네이버 페이
+    //private NaverPayGateway naverPayGateway;
+
+    //카카오페이
+    private KakaoPayGateway kakaoPayGateway;
+
+    public PaymentService() {
+        //this.naverPayGateway = new NaverPayGateway();
+        this.kakaoPayGateway = new KakaoPayGateway();
+    }
+
+    public boolean processPay(String orderId, int amount) {
+
+        System.out.println("결제 비즈니스 로직 시작! 주문 ID = " + orderId + ", 수량 = " + amount);
+
+        // 네이버 페이 담당 메서드 호출
+        //boolean result = naverPayGateway.pay(orderId,amount);
+
+        // 네이버 페이 담당 메서드 호출
+        boolean result = kakaoPayGateway.pay(orderId,amount);
+
+        if(result) {
+            System.out.println("결제 성공!");
+        } else {
+            System.out.println("걸제 실패..");
+        }
+        return result;
+    }
+}
