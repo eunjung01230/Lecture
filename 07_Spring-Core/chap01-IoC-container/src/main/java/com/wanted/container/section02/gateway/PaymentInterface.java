@@ -1,6 +1,12 @@
 package com.wanted.container.section02.gateway;
 
+/* comment.
+ *   section01 에서 발생한 각 구현체 별로
+ *   메서드 이름, 매개변수 타입 / 순서 문제를
+ *   interface 의 특징을 활용해서 해결
+ *  */
 public interface PaymentInterface {
-    //결제 시 주문 번호와 수량 받도록 함
+
     boolean processPay(String orderId, int amount);
+
 }

@@ -6,10 +6,9 @@ package com.wanted.container.section02.config;
     Bean : Bean은 Spring에서 객체를 의미하는 단어.
  */
 
-import com.wanted.container.section01.gateway.KakaoPayGateway;
-import com.wanted.container.section01.gateway.NaverPayGateway;
-import com.wanted.container.section01.service.PaymentService;
-import org.springframework.beans.factory.BeanRegistrarDslMarker;
+import com.wanted.container.section02.gateway.KakaoPayGateway;
+import com.wanted.container.section02.gateway.NaverPayGateway;
+import com.wanted.container.section02.service.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,16 +22,19 @@ public class AppConfig {
 
     @Bean
     public KakaoPayGateway kakaoPayGateway() {
+
         return new KakaoPayGateway();
     }
 
     @Bean
     public NaverPayGateway naverPayGateway() {
+
         return new NaverPayGateway();
     }
 
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService();
+
+        return new PaymentService(kakaoPayGateway());
     }
 }
