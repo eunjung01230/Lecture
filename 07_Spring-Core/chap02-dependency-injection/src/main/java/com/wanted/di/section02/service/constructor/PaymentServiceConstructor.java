@@ -4,7 +4,7 @@ import com.wanted.di.section02.gateway.PaymentInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-// 빈의 이름 지정 'feild'
+// 빈의 이름 지정 'constructor'
 @Service("constructor")
 public class PaymentServiceConstructor {
 
