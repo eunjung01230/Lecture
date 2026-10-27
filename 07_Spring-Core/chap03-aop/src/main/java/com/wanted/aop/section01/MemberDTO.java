@@ -1,7 +1,14 @@
 package com.wanted.aop.section01;
 
+import lombok.*;
+
 //DTO는 행위 위주의 객체가 아닌
-//데이터 위주의 객체이다. 각 역할에 '맞는' 행위만 하는 행위 위주 클래스는?
+//데이터 위주의 객체이다.
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class MemberDTO {
 
     private String email;
@@ -9,4 +16,7 @@ public class MemberDTO {
     private String name;
     private String phone;
     private String role;
+
+
+
 }
