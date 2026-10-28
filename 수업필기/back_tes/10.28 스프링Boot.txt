@@ -1,1 +1,61 @@
 10.28 스프링Boot
+1. 
+=============================================================
+일단 프젝을 만들면 Application이 하나는 자동으로 생성됨 
+실행하면 tomcat 자동실행 -> IoC 컴베이션이 자동으로 만들어짐 이것들이 내장되어 있음 
+동작은 하지만 내장되어 있어 눈에 보이지는 않음 
+
+resources안에 
+static - 정적파일 (이미지 같은 것들)
+templates - 서버 작동시 내용이 들어가? 
+application.yaml  - 기본 설정 파일/ 아이디, 비번, DBurl 여기에 적음  환경설정 정보를 입력하는 곳 
+Application을 run하면 제일 먼저 작동 = 자바에서의 static과 비슷한 느낌 
+survlet에서 실행하자 마자 진행? 여기 개념 꼬임 
+
+=> 
+Spring Boot 프로젝트를 생성하면 일반적으로 @SpringBootApplication이 선언된 Application 클래스가 생성된다.
+
+Application의 main() 메서드를 실행하면 SpringApplication.run()이 호출되고 Spring Boot가 시작된다.
+
+실행 과정에서 환경설정을 읽고, IoC Container(ApplicationContext)를 준비하여 Bean을 생성하고 의존성을 주입한다. 웹 애플리케이션이라면 내장 Tomcat도 시작되어 HTTP 요청을 받을 준비를 한다.
+
+이후 브라우저에서 요청이 들어오면 Tomcat이 요청을 받아 Spring MVC의 DispatcherServlet으로 전달한다. DispatcherServlet은 요청을 처리할 Controller를 찾고, 필요에 따라 Service와 Repository를 거쳐 처리 결과를 응답한다.
+
+static은 정적 리소스, templates는 서버에서 처리할 화면 템플릿, application.yaml은 환경설정 파일이다.
+
+서버 시작: main() → SpringApplication.run() → Spring 환경 및 Tomcat 준비
+요청 처리: 브라우저 → Tomcat → DispatcherServlet → Controller → 응답
+Spring IoC/DI와 AOP는 사라진 게 아니라 Spring Boot 안에서도 그대로 동작
+단, Spring Boot가 복잡한 초기 설정을 자동화
+=============================================================
+
+2. =============================================================
+appliction 실행 -> index -> survle-> 책임을 나누어 서 상세를 controll에서 실행 -> 마지막에 응답 전용 서블릿으로 감 (tem-mappingresult.html) -> 사용자에게 view
+
+Controller가 result를 반환했을 때 templates/result.html을 찾아 HTML을 생성
+
+@RequestMapping : Servlet에서 sevice()라는 메소드와 같은 역할: get/post/delete 다 받을 수 있음 
+근데? 난 post만 받고 싶네
+@RequestMapping(value = "/menu/regist", method = RequestMethod.POST) 설정 
+즉, 같은 url 다른 동작을 원하면 메소드를 하나씩 지정해줘야됨 
+
+하지만 편한 방법이 있져 
+@GetMapping = doget() 메소드 
+@PostMapping = dopost() 
+
+3. =============================================================
+***url정리가 제일 중요해요 
+팀플에서 각 개발가능 기능별 분리 가능 
++ 상세보기 혹은 검색시 많이 사용되는 기능
+
+@GetMapping("/detail/{orderNo}") 여기서 orderNo 이거 이름이 무조건 같아야 실행됨 
+    public String pathVariable(Model model, @PathVariable("orderNo") int no) 
+  //public String pathVariable(Model model, @PathVariable int orderNo) 
+
+그래서 필요한 만큼 무한 증식 불가 ->@PathVariable("orderNo")경로를 지정 중괄호로 
+---------------------------------------
+object 타입으로 넘기면 .을 통해 참조 가능 
+단, 주의점 DTO에서 설정한 이름과 HTML에서 참조하는 이름이 동일해야함 
+다르면  null이 담겨 널포인트를 참조 가능? ㄴㄴ 500번 에러 
+
+전달하는 - 전달받는 키값 이름 무조건 제일 중요 오류 팡팡 

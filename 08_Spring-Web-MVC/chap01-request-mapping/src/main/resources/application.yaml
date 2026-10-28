@@ -1,3 +1,10 @@
 spring:
   application:
     name: chap01-request-mapping
+
+server:
+  port: 7777
+
+# Spring.application.name=chap01-request-mapping : 와 같지만 키값을 표현하는 방식이 다른 것
+
+
