@@ -1,0 +1,45 @@
+AOP 실행 과정 
+
+Application 
+->
+Proxy(행위자) 
+-> 
+Weaving(엮음) = @EnableAspectJAutoProxy
+요청 자체가 아니라 Spring Bean의 메서드 호출을 가로챌 수 있도록 설정
+->
+Aspect(규칙) = Pointcut(조건_어디에) + Advice(무엇을) 생성
+->
+Pointcut(조건_어디에) = "execution(* com.wanted.aop.section02.MemberService.*(..))")
+-> 
+JoinPoint(조회)
+-> 
+행위(Around -> Advice -> Around)
+-> 
+Proxy(결과)
+
+수정후
+
+【준비 단계】 프로그램 시작 시 한 번
+Aspect(규칙) = Pointcut(어디에) + Advice(무엇을)   ← 개발자가 미리 작성
+   ↓
+Weaving(엮음) = @EnableAspectJAutoProxy 가 켜 둔 기능으로
+                Target에 Aspect를 엮어 Proxy를 만든다
+   ↓
+getBean() 하면 Target이 아니라 Proxy가 나온다
+
+
+Application
+   ↓
+Proxy(행위자)가 호출을 먼저 받음
+   ↓
+Pointcut 조건에 걸리는지 확인 → 걸리면 이 실행이 JoinPoint
+   ↓
+Advice 실행 (모두 Advice)
+   @Around 앞부분
+     → @Before
+       → ★ Target 실행 (진짜 getMember, 핵심 로직)
+     → @AfterReturning 또는 @AfterThrowing
+     → @After
+   @Around finally
+   ↓
+Proxy가 결과(또는 예외)를 Application에 돌려줌
