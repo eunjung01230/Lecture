@@ -72,7 +72,7 @@ public class RequestController {
             클래스 자료형을 활용해서 사용자의 입력 값들을
             하나의 객체로 묶을 수 있다.
             ---
-            Model 객체를 활용하지 않아도 (= Model model + model.~~)
+            Model 객체를 활용하지 않아도 (= Model model + model.addAttribute("Message", "메세지"))
             forward 되는 페이지에서 값들을 활용할 수 있다 .
             ex) @ModelAttribute MenuDTO menu
             MenuDTO -> menuDTO 이름으로 사용될 수 있다.
