@@ -1,0 +1,6 @@
+10.30 파일업로드 + 관리
+
+package com.wanted.fileupload/FileController.java
+//파일의 확장자 분리 // test / .png / 대문자를 소문자로 변경 (.PNG -> .png)
+//substring = 문자열을 자른다 //lastIndexOf(".") = .을 만나면 멈춤 |= .을 만나면 잘라버리겠어
+String ext = originalname.substring(originalname.lastIndexOf(".")).toLowerCase();

@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -45,6 +47,44 @@ public class FileController {
             mv.addObject("files" , "/uploads/" + savedName);
         } catch (IOException e) {
             mv.addObject("message", "파일 업로드 실패.." + e.getMessage());
+        }
+
+        mv.setViewName("result");
+
+        return mv;
+    }
+
+    @PostMapping("multi-file")
+    public ModelAndView multiFileUpload(@RequestParam("multiFile") List<MultipartFile> multipartFile, String description, ModelAndView mv) {
+
+        System.out.println("multipartFile = " + multipartFile);
+        System.out.println("description = " + description);
+
+        // 여러 개의 파일을 처리하기 위한 DTO 객체 활용
+        List<FileDTO> files = new ArrayList<>();
+        // 화면에서 접근할 URL 저장용
+        List<String> savedFiles = new ArrayList<>();
+
+        try {
+            // 전달 받은 여러 개의 파일을 반복
+            for (MultipartFile file : multipartFile) {
+                String savedName = save(file);
+                files.add(new FileDTO(file.getOriginalFilename(), savedName, uploadDir, description));
+                savedFiles.add("/uploads/" + savedName);
+            }
+
+            mv.addObject("message", "멀티 파일 업로드 성공!");
+            mv.addObject("files", savedFiles);
+        } catch (Exception e) {
+
+            // 예를 들어 5개 파일을 넣었는데
+            // 4개는 정상적으로 저장되고, 1개만 안되면?
+            // ex) Transaction 의 rollback 처럼 동작하게 만들 것이다.
+            // 실패 시에 이전에 저장된 파일을 삭제
+            for (FileDTO file : files) {
+                new File(new File(uploadDir).getAbsoluteFile(), file.getSavedName()).delete();
+            }
+            mv.addObject("message", "멀티 파일 업로드 실패!");
         }
 
         mv.setViewName("result");
