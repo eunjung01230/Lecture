@@ -1,0 +1,82 @@
+package com.wanted.fileupload;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.UUID;
+
+@Controller
+public class FileController {
+
+    // .ymal 에 지정한 환경변수 불러오는 방법
+    @Value("${file.upload-dir}")
+    private String uploadDir;
+
+    /* comment. 파일 관련 진행 순서
+     *   1. 사용자가 업로드한 파일/설명 확인
+     *   2. 파일 저장 경로 확인 및 파일 저장 경로가 없다면 생성
+     *   3. 원본 파일명을 UUID 기반의 새로운 이름으로 변경
+     *   4. 생성 된 경로에 파일 저장
+     *   5. 결과 메세지와 파일 저장 위치 URL 을 Model 에 담아 응답
+     *  */
+
+    @PostMapping("single-file")
+    public ModelAndView single(
+            @RequestParam MultipartFile singleFile,
+            @RequestParam String description,
+            ModelAndView mv) {
+        //MultipartFile 타입으로 파일 관련된 타입들을 받을 수 있음.
+
+        System.out.println("singleFile = " + singleFile);
+        System.out.println("description = " + description);
+
+        // 서버측에서 파일 저장 시 이름 변수
+        try {
+            String savedName = save(singleFile);
+            mv.addObject("message", "파일 업로드 성공!!");
+            mv.addObject("files" , "/uploads/" + savedName);
+        } catch (IOException e) {
+            mv.addObject("message", "파일 업로드 실패.." + e.getMessage());
+        }
+
+        mv.setViewName("result");
+
+        return mv;
+    }
+
+    // 파일을 저장하고, 저장 된 파일의 이름을 반환한다.
+    private String save(MultipartFile file) throws IOException {
+
+        // 파일의 원본 이름 추출  // test.png
+        String originName = file.getOriginalFilename();
+        System.out.println("originName = " + originName);
+
+        // 파일의 확장자 분리   // test / .png / 대문자를 소문자로 변경 (.PNG -> .png)
+        // 뒤에서부터 오다가 .을 만나는 순간 잘라버리겠다.
+        String ext = originName.substring(originName.lastIndexOf(".")).toLowerCase();
+
+        // 중복되는 파일명 방지를 위한 UUID
+        // 하나의 식별자 => 랜덤한 값을 줌
+        // 스크린샷.png -> 3829382d2323.png 따라서 파일명이 중복되는 현상이 사라짐 뒤에다가는 떼어놓은 확장자를 붙여놓음(ext)
+        String savedName = UUID.randomUUID().toString() + ext;      // 저장시 사용할 이름
+
+        // 파일을 저장할 폴더 생성
+        File dir = new File(uploadDir).getAbsoluteFile();  //경로 전달(yaml 에서 가져옴)
+        dir.mkdirs();
+
+        // 업로드 파일을 변환 할 준비
+        // 업로드한 파일을 생성한 디렉터리에 저장할 이름으로 변환 후 저장
+        file.transferTo(new File(dir, savedName));
+
+        return savedName;
+    }
+
+}

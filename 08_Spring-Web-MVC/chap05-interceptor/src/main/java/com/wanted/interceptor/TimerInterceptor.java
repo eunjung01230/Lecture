@@ -33,7 +33,7 @@ public class TimerInterceptor implements HandlerInterceptor {
 
         long endTime = System.currentTimeMillis();
 
-        long startTime = (long) request.getAttribute("startTime ");
+        long startTime = (long) request.getAttribute("startTime");
 
         modelAndView.addObject("interval", endTime - startTime);
 
