@@ -1,3 +1,11 @@
 spring:
   application:
     name: chap01-jpa-intro
+  # mysql 의존성을 추가하면 yaml파일에
+  # 데이터베이스 고나련 정보를 작성해주어야
+  # 어플리케이션이 실행된다.
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/menudb
+    username: wanted
+    password: wanted
