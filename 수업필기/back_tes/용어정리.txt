@@ -1,0 +1,9 @@
+HTTP = 통신 규칙
+
+Tomcat = 요청을 받고 Servlet을 실행·관리하는 환경
+
+DispatcherServlet = Spring MVC의 요청 처리 흐름을 조정하는 Servlet
+
+Controller = 실제 요청에 해당하는 작업을 수행하는 담당자
+
+Thymeleaf = Java 데이터를 HTML에 반영하는 도구

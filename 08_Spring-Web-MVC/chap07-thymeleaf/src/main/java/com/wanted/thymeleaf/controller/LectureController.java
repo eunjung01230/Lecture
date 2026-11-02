@@ -97,7 +97,6 @@ public class LectureController {
         return mv;
     }
 
-
     @GetMapping("/fragment")
     public ModelAndView fragment(ModelAndView mv){
 
