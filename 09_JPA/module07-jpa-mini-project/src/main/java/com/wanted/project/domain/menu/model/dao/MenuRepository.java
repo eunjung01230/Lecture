@@ -32,6 +32,14 @@ import java.util.List;
 public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     // TODO 2
-
+    /* comment. QueryMethod
+    *   JPA에서 제공해주는 기능으로, Entity 필드에 대해
+    *   조건식, 그룹핑, 정렬 등을 메서드 형태로 작성할 수 있게
+    *   해준다
+    *   장점: 조건이 적다면 메서드로만 기능을 구현하기 편하다.
+    *   단점: 조건이 많아지거나, Join이 일어나는 쿼리문의 경우 가독성이 많이 떨어진다.
+    *   정확한 메서드를 구현하기 힘들어진다.
+    * */
+    List<Menu> findByMenuPriceGreaterThanOrderByMenuPrice(int menuPrice);
     // TODO 3
 }

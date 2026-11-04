@@ -25,7 +25,11 @@ public class CategoryDTO {
     private Integer refCategoryCode;
 
     public static CategoryDTO from(Category category) {
-        // TODO 1
-        return null;
+        // TODO 1: Entity -> DTO
+        return new CategoryDTO(
+                category.getCategoryCode(),
+                category.getCategoryName(),
+                category.getRefCategoryCode()
+        );
     }
 }

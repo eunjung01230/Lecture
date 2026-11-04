@@ -23,13 +23,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
+@Entity
+@Table(name ="tbl_category")
 public class Category {
 
+    @Id
+    @Column(name = "category_code")
     private int categoryCode;
 
+    @Column(name = "category_name")
     private String categoryName;
 
-    private Integer refCategoryCode;
+    @Column(name = "ref_category_code")
+    private Integer refCategoryCode;    // 최상위 카테고리는 NULL 이므로 int 가 아닌 Integer
 
     public boolean isSubCategory() {
         // TODO 3

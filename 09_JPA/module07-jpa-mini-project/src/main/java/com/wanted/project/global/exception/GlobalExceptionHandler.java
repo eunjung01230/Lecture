@@ -32,12 +32,15 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
  *  7. handleException()      : 그 외 모든 예외                    -> log.error 후 500
  */
 @Slf4j
+// 예외처리를 전역으로 핸들링 하기 위해서는
+// 해당 어노테이션이 반드시 필요하다.
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ModelAndView handleBusinessException(BusinessException e) {
         // TODO 1
-        return null;
+        return errorPage(e.getErrorCode().getStatus(), e.getMessage());
     }
 
     /* MethodArgumentNotValidException(@Valid @ModelAttribute 검증 실패) 는 BindException 의 자식이다. */
@@ -49,8 +52,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HandlerMethodValidationException.class)
     public ModelAndView handleMethodValidation(HandlerMethodValidationException e) {
-        // TODO 3
-        return null;
+        // TODO 3 : @RequestParam에 직접 붙인 @Min 조건을 만족하지 못하면 동작.
+        String message = e.getMessage();
+        return errorPage(HttpStatus.BAD_REQUEST, message);
     }
 
     @ExceptionHandler({MissingServletRequestParameterException.class, MethodArgumentTypeMismatchException.class})

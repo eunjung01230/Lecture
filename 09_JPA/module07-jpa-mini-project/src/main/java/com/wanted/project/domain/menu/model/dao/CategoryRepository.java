@@ -19,7 +19,19 @@ import java.util.List;
  *                           (native query 직접 작성, 메뉴 등록 화면의 카테고리 목록에 사용)
  */
 @Repository
-public interface CategoryRepository {
+public interface CategoryRepository extends JpaRepository<Category, Integer>{
 
-    // TODO 2
+    // TODO 2: 하위 카테고리 데이터를 find하는 메소드
+    // 쿼리메서드는 조건식이 복잡하거나, Join이 많이 걸리면
+    // 작성하기 힘들어진다.
+    // @Query 어노테이션은 직접 SQL 구문을 작성할 수 있게 해준다.
+    // 2개의 종류
+    // 1. JPQL: 엔티티를 대상으로 SQL 구문 작성
+    // 2. Native Query: 실제 사용 DB의 SQL 구문을 작성
+    //@Query(value = "select m from Category m") -> @Query(value = "select m.categoryCode from Category m") = m.categoryCode이렇게 쿼리가 아닌 필드명을 작성한다.
+    // ---
+    // 기본값은 jpql 이다.
+    // nativeQuery = true로 해야지 실제 SQL을 작성할 수 있다.
+    @Query(value = "select * from tbl_category m where ref_category_code is not null order by category_code", nativeQuery = true)
+    List<Category> findSubCategory();
 }

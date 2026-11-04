@@ -11,13 +11,16 @@ import com.wanted.project.domain.menu.model.policy.MenuDeletionPolicy;
 import com.wanted.project.domain.menu.model.policy.MenuNamePolicy;
 import com.wanted.project.global.exception.BusinessException;
 import com.wanted.project.global.exception.ErrorCode;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /*
  * [MenuService]
@@ -52,6 +55,7 @@ public class MenuService {
 
     // TODO 0: DAO 계층 의존성 주입
     private final MenuRepository menuRepository;
+    private final CategoryRepository categoryRepository;
 
     // 메뉴 코드를 DAO 계층에 전달하여 메뉴 코드에 대한 엔티티를
     // 조회하라 명령을 내리며, Entity 객체를 DTO로 변환하여
@@ -83,8 +87,12 @@ public class MenuService {
     }
 
     public List<CategoryDTO> findSubCategories() {
-        // TODO 4
-        return null;
+        // TODO 4: 해당 메서드는 DB에서 카테고리 데이터를 조회한다.
+        List<Category> categoryList = categoryRepository.findSubCategory();
+
+        return categoryList.stream()
+                .map(CategoryDTO::from)
+                .toList();
     }
 
     public int registNewMenu(MenuDTO registMenu) {
@@ -106,5 +114,22 @@ public class MenuService {
 
     public void resumeSelling(int menuCode) {
         // TODO 8
+    }
+
+    public List<MenuDTO> findByMenuPrice(int menuPrice) {
+
+        //사용자가 입력한  menuPrice 이상인 메뉴 엔티티를 조회
+        //가격별 오름차순 정렬
+        List<Menu> menuList = menuRepository.findByMenuPriceGreaterThanOrderByMenuPrice(menuPrice);
+
+        // Entity -> DTO
+        // stream 문법: for 문의 경우 코드가 많고 복잡하다는 단점이 있다.
+        // stream은 그 단점을 짧은 코드로 해결할 수 있는 문법이다.
+        List<MenuDTO> dtos =
+                menuList.stream()
+//                        .map(menu -> MenuDTO.from(menu))
+                        .map( MenuDTO::from)
+                        .toList();
+        return dtos;
     }
 }

@@ -69,10 +69,28 @@ public class MenuController {
     @GetMapping("/querymethod")
     public void queryPage() {}
 
+    /* comment.
+        해당 메서드는 /search?menuPrice=1000
+        이런 식으로  queryString 데이터가 오게 된다.
+        ? 유무로 pathVariable / queryString을 구분하면 좋다.
+        중요.
+        유효성 검사의 경우 front (js)에서도 진행할 수 있다.
+        다만, front에서만 진행하게 되면 url 조작, body 조작 시에는
+        막을 수 있는 방법이 없다.
+        따라서 백엔드에서도 유효성 검사를 진행해야 한다.
+     */
     @GetMapping("/search")
-    public ModelAndView findByMenuPrice(@RequestParam int menuPrice, ModelAndView mv) {
-        // TODO 3
-        return null;
+    public ModelAndView findByMenuPrice(@RequestParam
+                                        @Min(value = 0, message = "가격은 0원 이상 입력!") int menuPrice,
+                                        ModelAndView mv) {
+        // TODO 3 : menuPrice 이상의 모든 메뉴 조회
+        List<MenuDTO> menuList = menuService.findByMenuPrice(menuPrice);
+
+        mv.addObject("menuList", menuList);
+        mv.addObject("menuPrice", menuPrice);
+        mv.setViewName("menu/searchResult");
+
+        return mv;
     }
 
     @GetMapping("/regist")
@@ -80,11 +98,25 @@ public class MenuController {
         return "menu/regist";
     }
 
+    /* comment. @ResponseBody
+        등장 이유!
+        - 현재 Controller는 마지막 책임이
+        - View를 return 해주는 것이다.
+        한계점.
+        만약 메인 페이지에서 메뉴 목록, 주문 목록, 회원 목록을
+        전부 보여주게 계획을 했다면?
+        여러 사람들이 작업한 결과물을 반복해서 또 작성해야 한다.
+        ---
+        @ResponseBody는 응답 시 View를 리턴하는 것이 아닌
+        Data를 리턴한다. = 컨트롤러의 책임을 나누어 가짐
+        == Controller의 View 리턴 책임을 없애주며,
+        데이터만 응답할 수 있도록 해준다.
+     */
     @GetMapping("/category")
     @ResponseBody
     public List<CategoryDTO> findCategoryList() {
         // TODO 4
-        return null;
+        return menuService.findSubCategories();
     }
 
     @PostMapping("/regist")

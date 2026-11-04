@@ -110,11 +110,20 @@
 </div>
 
 <script>
+    // fetch는 해당 페이지가 켜질 때 비동기 방식으로
+    // 호출이 된다. == fetch('/menu/category') -> Controller의 return 값
+    // (비동기란? 우리가 특정 물리적인 행위를 하지 않더라도 백그라운드에서 실행)
     fetch('/menu/category')
+        // 문자열 형태의 데이터를 javaScript 객체로 변환
+        // .then(List<CategoryDTO>) => List<CategoryDTO>.json())
         .then(res => res.json())
+        // data == json로 변환 된 카테고리 리스트
         .then(data => {
+            // select 태그 추출
             const $categoryCode = document.getElementById("categoryCode");
 
+            // 카테고리 리스트를 순회하며
+            // option태그를 만들어서 대입
             for (let index in data) {
                 const $option = document.createElement("option");
                 $option.value = data[index].categoryCode;
@@ -128,3 +137,4 @@
 
 </body>
 </html>
+
