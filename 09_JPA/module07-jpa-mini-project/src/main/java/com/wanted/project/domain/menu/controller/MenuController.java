@@ -120,9 +120,16 @@ public class MenuController {
     }
 
     @PostMapping("/regist")
-    public ModelAndView registMenu(@ModelAttribute MenuDTO registMenu, ModelAndView mv) {
-        // TODO 5
-        return null;
+    public ModelAndView registMenu(@Valid @ModelAttribute MenuDTO registMenu, ModelAndView mv) {
+        // TODO 5: DTO 내부에 유효성 검사를 해두면 적용되기 위해서는
+        // @Valid 어노테이션을 반드시 달아주어야 한다.
+
+        int menuCode = menuService.registNewMenu(registMenu);
+
+        // 상세조회 페이지를 재활용
+        mv.setViewName("redirect:/menu/" + menuCode);
+
+        return mv;
     }
 
     @GetMapping("/modify")
@@ -130,8 +137,12 @@ public class MenuController {
 
     @PostMapping("/modify")
     public ModelAndView modifyMenuName(@RequestParam int menuCode, @RequestParam String menuName, ModelAndView mv) {
-        // TODO 6
-        return null;
+        // TODO 6: 메뉴코드와 변경할 이름을 전달 받아 수정
+
+        menuService.modifyMenuName(menuCode, menuName);
+
+        mv.setViewName("redirect:/menu/" + menuCode);
+        return mv;
     }
 
     @GetMapping("/delete")
@@ -139,8 +150,13 @@ public class MenuController {
 
     @PostMapping("/delete")
     public ModelAndView deleteMenu(@RequestParam int menuCode, ModelAndView mv) {
-        // TODO 7
-        return null;
+        // TODO 7: 메뉴 코드를 전달 받아 해당 메뉴 삭제
+
+        menuService.deleteMenu(menuCode);
+
+        mv.setViewName("redirect:/menu/list");
+
+        return mv;
     }
 
     @PostMapping("/stop")

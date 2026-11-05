@@ -34,9 +34,14 @@ import lombok.*;
 @Table(name = "tbl_menu")
 public class Menu {
 
+    //Y,N은 의미를 파악하기 힘든 값이기 때문에
+    //값에 의미를 부여하기 위한 변수 선언
+    private static final String ON_SALE = "Y";
+    private static final String STOPPED = "N";
+
     @Id
     @Column(name = "menu_code")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //투두3 : return new Menu(0 의 이유? attribute와 비슷한 기능?이유?
     private int menuCode;
 
     @Column(name = "menu_name")
@@ -52,12 +57,15 @@ public class Menu {
     private String orderableStatus;
 
     public static Menu create(String menuName, int menuPrice, int categoryCode) {
-        // TODO 3
-        return null;
+        // TODO 3: 정적 팩터리 메서드
+        // 엔티티 객체를 생성하는 것은 Entity 클래스만의 책임이며
+        // 외부에서는 해당 메서드를 부르면 Entity 객체를 return 해준다.
+        return new Menu(0, menuName, menuPrice, categoryCode,ON_SALE);
     }
 
     public void changeMenuName(String newMenuName) {
-        // TODO 4
+        // TODO 4: 해당 메서드로만 메뉴 이름을 바꿀 수 있다.
+        this.menuName = newMenuName;
     }
 
     public void stopSelling() {
@@ -69,6 +77,9 @@ public class Menu {
     }
 
     public void validateDeletable() {
-        // TODO 5
+        // TODO 5: 판매상태가 Y 이면 삭제 불가 예외 발생
+        if (this.orderableStatus.equals(ON_SALE)) {   //판매상태부터 바꿔라
+            throw new BusinessException(ErrorCode.ON_SALE_MENU_CANNOT_DELETE);
+        }
     }
 }

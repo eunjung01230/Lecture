@@ -12,5 +12,5 @@ package com.wanted.project.domain.menu.model.policy;
  */
 public interface MenuOrderHistoryChecker {
 
-    boolean hasOrdered(int menuCode);
+    boolean hasOrdered(int menuCode); // 사용권을 허락받기 위한 질문지 실구현체가 없음
 }
