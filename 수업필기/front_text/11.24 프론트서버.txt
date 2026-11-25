@@ -1,0 +1,13 @@
+11.24 프론트서버
+
+npm run dev = 서버창 실행 
+ctrl c = 서버 종료 
+
+npm install react-router-dom
+
+package.json = 스프링의 그리들과 같음 
+
+리액트는 단일페이지? 
+
+각 페이지가 어떻게 연결되어 있는가 
+공통된 화면이 어떻게 묶여있고 어떤 API를 호출하고 어떤 컴포넌트로 묶여있는가 
